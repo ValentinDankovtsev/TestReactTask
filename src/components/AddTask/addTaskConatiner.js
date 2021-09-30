@@ -1,0 +1,35 @@
+import { connect } from 'react-redux'
+import AddTask from './AddTask';
+// import Tasks from
+import {updateTaskActionCreator,addTaskActionCreator,updateDescriptionActionCreator,updateDataActionCreator} from '../../redux/addTasksReducer'
+
+const mapStateToProps = (state) => {
+    return {
+        tasks:state.tasksPage.tasks,
+        newTaskText:state.tasksPage.newTaskText,
+        newDescriptionText:state.tasksPage.newDescriptionText,
+        newDate:state.tasksPage.newDate
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateNewTask:(text)=>{
+            dispatch(updateTaskActionCreator(text));
+          },
+          updateDescription:(text)=>{
+            dispatch(updateDescriptionActionCreator(text));
+          },
+          updateData:(text)=> {
+            dispatch(updateDataActionCreator(text));
+          },
+          addTask:()=>{
+            dispatch(addTaskActionCreator());
+          }
+    }
+    
+}
+
+let AddTaskContainer = connect(mapStateToProps,mapDispatchToProps)(AddTask)
+
+export default AddTaskContainer
