@@ -49,7 +49,7 @@ const changeData = (e) => {
       <span>Дата</span>
       <input></input> */}
       <div>
-        <Link to='/'>
+        <Link to='/tasks'>
         <button onClick={inTask}>ок</button>
         </Link>
         {/* <div>{tasksElement}</div> */}

@@ -2,9 +2,11 @@ import {combineReducers,createStore} from 'redux';
 import addTaskReducer from './addTasksReducer'
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import loginReducer from './loginReducer'
 
 let reducers = combineReducers({
-    tasksPage:addTaskReducer
+    tasksPage:addTaskReducer,
+    loginPage:loginReducer
 })
 
 

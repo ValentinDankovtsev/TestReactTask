@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
         tasks:state.tasksPage.tasks,
         newTaskText:state.tasksPage.newTaskText,
         newDescriptionText:state.tasksPage.newDescriptionText,
-        newDate:state.tasksPage.newDate
+        newDate:state.tasksPage.newDate,
     }
 }
 
