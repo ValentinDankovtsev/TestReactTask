@@ -1,61 +1,111 @@
 import React from "react";
-import Task from './Task';
-import { Link } from "react-router-dom";
-
+import { Link, Redirect } from "react-router-dom";
+import { PageHeader, Form, Input, Button, DatePicker } from "antd";
+import s from "./addTask.module.css";
 const AddTask = (props) => {
-  
-  // const tasksElement = props.tasks.map((el) => (
-  //   <Task task={el.task} description={el.description} date={el.date}/>
-  // ));
-  
-const inTask = () => {
-  props.addTask();
-  
-}
+  const inTask = () => {
+    props.addTask();
+  };
 
-const changeTask = (e) => {
-  const text = e.target.value;
-    props.updateNewTask(text)
-}
+  const changeTask = (e) => {
+    const text = e.target.value;
+    props.updateNewTask(text);
+  };
 
-const changeDescription = (e) => {
-  const text = e.target.value;
-    props.updateDescription(text)
-}
+  const changeDescription = (e) => {
+    const text = e.target.value;
+    props.updateDescription(text);
+  };
 
-const changeData = (e) => {
-  const text = e.target.value;
-    props.updateData(text)
-}
+  const changeData = (data, datestring) => {
+    props.updateData(datestring);
+  };
 
+  if (!props.isAuth) return <Redirect to="/" />;
   return (
     <div>
-      <div>Добавить задачу</div>
-      <div>
-      <span>Имя</span>
-      <textarea value={props.newTaskText} onChange={changeTask}></textarea>
+      <div className={s.pageAddTaskHeader}>
+        <PageHeader
+          title="Add Task"
+          onBack={() => window.history.back()}
+        ></PageHeader>
       </div>
-      <div>
-      <span>Описание</span>
-      <textarea value={props.newDescriptionText} onChange={changeDescription}></textarea>
-      </div>
-      <div>
-      <span>Дата</span>
-      <textarea value={props.newDate} onChange={changeData}></textarea>
-      </div>
-     
-      {/* <span>Описание</span>
-      <input></input>
-      <span>Дата</span>
-      <input></input> */}
-      <div>
-        <Link to='/tasks'>
-        <button onClick={inTask}>ок</button>
-        </Link>
-        {/* <div>{tasksElement}</div> */}
-      </div>
+
+      <Form
+        name="basic"
+        labelCol={{
+          span: 10,
+        }}
+        wrapperCol={{
+          span: 6,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Task"
+          name="task"
+          rules={[
+            {
+              required: true,
+              message: "Please input your nameTask!",
+            },
+          ]}
+        >
+          <Input
+            value={props.newTaskText}
+            required
+            onChange={changeTask}
+          ></Input>
+        </Form.Item>
+
+        <Form.Item
+          label="Description"
+          name="description"
+          rules={[
+            {
+              required: true,
+              message: "Please input your description!",
+            },
+          ]}
+        >
+          <Input
+            value={props.newDescriptionText}
+            onChange={changeDescription}
+          ></Input>
+        </Form.Item>
+
+        <Form.Item
+          label="Date"
+          name="date"
+          rules={[
+            {
+              required: true,
+              message: "Please input your date!",
+            },
+          ]}
+        >
+          <DatePicker value={props.newDate} onChange={changeData}></DatePicker>
+        </Form.Item>
+
+        <div>
+          <Link to="/tasks">
+            <Form.Item
+              wrapperCol={{
+                offset: 10,
+                span: 10,
+              }}
+            >
+              <Button type="primary" htmlType="submit" onClick={inTask}>
+                Add
+              </Button>
+            </Form.Item>
+          </Link>
+        </div>
+      </Form>
     </div>
-    
   );
 };
 

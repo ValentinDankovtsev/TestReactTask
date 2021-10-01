@@ -1,14 +1,18 @@
-import { updateUserNameActionCreator,addUserActionCreator } from "../../redux/loginReducer";
+import { updateUserNameActionCreator,addUserActionCreator,addUserPasswordActionCreator } from "../../redux/loginReducer";
 import { connect } from "react-redux";
 import Autoruzation from "./Autorization";
-
+import { store } from "../../redux/store";
+import { logIn } from "../services/logIn";
+import { Redirect } from "react-router";
 
 const mapStateToProps = (state) => {
     return {
-        userName:state.loginPage.userName,
+        userName:state.loginPage.newUserName,
         isAuth:state.loginPage.isAuth,
+        password:state.loginPage.newPassword
     }
 }
+
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -18,6 +22,14 @@ const mapDispatchToProps = (dispatch) => {
   
       addLogin:()=>{
         dispatch(addUserActionCreator());
+        
+      // if(login) {
+      //    return window.goBack()
+      // }
+        
+      },
+      updatePassword:(text)=>{
+        dispatch(addUserPasswordActionCreator(text))
       }
     }
   }

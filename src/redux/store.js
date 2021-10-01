@@ -19,6 +19,7 @@ const persistConfig = {
    
   
     export let store = createStore(persistedReducer)
+    console.log(store.getState())
     export let persistor = persistStore(store)
   
   

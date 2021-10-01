@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
         newTaskText:state.tasksPage.newTaskText,
         newDescriptionText:state.tasksPage.newDescriptionText,
         newDate:state.tasksPage.newDate,
+        isAuth:state.loginPage.isAuth
     }
 }
 

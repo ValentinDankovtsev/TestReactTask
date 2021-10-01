@@ -2,21 +2,20 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { logIn } from "../services/logIn";
 
 const Athorization = (WrappedComponent) => {
-    class WithAuthorization extends React.Component {
-      static propTypes = {
-        isAuth: PropTypes.bool
-      };
   
+    class WithAuthorization extends React.Component {
+      
       render() {
         const { isAuth } = this.props;
-  
-        if (!isAuth) {
+        const  userName  = this.props;
+        console.log(isAuth)
+        console.log(userName)
+        if (isAuth) {
           return <Redirect to='/' />;
         }
-  
         return <WrappedComponent {...this.props}/>;
       }
     }
