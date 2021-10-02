@@ -8,9 +8,10 @@ import Autorization from "./Autorization";
 
 const mapStateToProps = (state) => {
   return {
-    userName: state.loginPage.newUserName,
+    userName: state.newUserName,
     isAuth: state.loginPage.isAuth,
-    password: state.loginPage.newPassword,
+    password: state.newPassword,
+    currentUser: state.newUser,
   };
 };
 

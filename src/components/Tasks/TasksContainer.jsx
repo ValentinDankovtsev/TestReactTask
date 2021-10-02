@@ -5,6 +5,7 @@ import {addSignOutActionCreator} from '../../redux/loginReducer'
 let mapStateToProps = (state) => {
   return {
     isAuth: state.loginPage.isAuth,
+    currentUser:state.loginPage.userName,
   };
 };
 

@@ -14,9 +14,10 @@ const persistConfig = {
   storage,
 };
 
+
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-export let store = createStore(persistedReducer);
+export let store = createStore(persistedReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 console.log(store.getState());
 
 export let persistor = persistStore(store);
@@ -35,3 +36,16 @@ export let persistor = persistStore(store);
 //     },
 //   ],
 // };
+
+// let state2 = {
+//   users: {
+//     admin: {
+//       tasks:[{ task: "name", description: "description", date: "date" }],
+//     },
+//     ser2: {
+//       tasks:[{ task: "name", description: "description", date: "date" }],
+//     },
+//   },
+//   isAuth:false
+// };
+

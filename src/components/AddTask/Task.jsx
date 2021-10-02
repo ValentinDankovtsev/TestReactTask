@@ -1,5 +1,5 @@
 import React from "react";
-import { Table} from "antd";
+import { Table } from "antd";
 
 const Task = (props) => {
   const columns = [
@@ -7,30 +7,30 @@ const Task = (props) => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text) => text
+      render: (text) => text,
     },
     {
       title: "Description",
       dataIndex: "description",
-      key: "description"
+      key: "description",
     },
     {
       title: "Date",
       dataIndex: "date",
-      key: "date"
-    }
+      key: "date",
+    },
   ];
-  
+
   const data = [
     {
       name: props.task,
       description: props.description,
-      date: props.date
+      date: props.date,
     },
   ];
-  
+
   return (
-    <div >
+    <div>
       <Table columns={columns} dataSource={data} />
     </div>
   );

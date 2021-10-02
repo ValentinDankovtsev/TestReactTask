@@ -1,11 +1,13 @@
+import { v4 as uuidv4 } from 'uuid';
 const ADD_TASK_TYPE = "ADD_TASK_TYPE";
 const UPDATE_TASK_TYPE = "UPDATE_TASK_TYPE";
 const UPDATE_DESCRIPTION_TYPE = "UPDATE_DESCRIPTION_TYPE";
 const UPDATE_DATE_TYPE = "UPDATE_DATA_TYPE";
 
+
+
 const initialState = {
-  tasks: [
-  ],
+  tasks: [],
   newTaskText: "Задача",
   newDescriptionText: "Описание",
   newDate: "Дата",
@@ -41,18 +43,22 @@ export const updateDataActionCreator = (text) => {
 const addTaskReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK_TYPE:
-      const newState = {
+      return {
         ...state,
         tasks: [
           ...state.tasks,
-          { id: 5, task: state.newTaskText, description: state.newDescriptionText, date: state.newDate},
+          {
+            id: uuidv4 (),
+            task: state.newTaskText,
+            description: state.newDescriptionText,
+            date: state.newDate,
+          },
         ],
-        newTaskText:'',
-        newDescriptionText:'',
-        newDate:'',
+        newTaskText: "",
+        newDescriptionText: "",
+        newDate: "",
       };
-      console.log(newState)
-      return newState
+
     case UPDATE_TASK_TYPE:
       return {
         ...state,
