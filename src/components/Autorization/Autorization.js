@@ -1,63 +1,82 @@
 import React from "react";
-import { store } from "../../redux/store";
-import { logIn } from "../services/logIn";
-import { Redirect,Link,} from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
+import { Redirect, Link } from "react-router-dom";
+import { Form, Input, Button } from "antd";
 
+const Autorization = (props) => {
+  const changeUserNameValue = (e) => {
+    const text = e.target.value;
+    props.updateUserName(text);
+  };
 
-const Autoruzation = (props) => {
-// debugger;
-const history = useHistory()
+  const changeUserPasswordValue = (e) => {
+    const text = e.target.value;
+    props.updatePassword(text);
+  };
+  const addUserNameAndPassword = () => {
+    props.addLogin();
+  };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
+  if (props.isAuth) return <Redirect to={"/tasks"} />;
+  console.log(props.isAuth);
+  return (
+    <div>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 10,
+        }}
+        wrapperCol={{
+          span: 6,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username!",
+            },
+          ]}
+        >
+          <Input value={props.userName} onChange={changeUserNameValue} />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input value={props.password} onChange={changeUserPasswordValue} />
+        </Form.Item>
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Link to={"/tasks"}>
+            <Button type="primary" onClick={addUserNameAndPassword}>
+              Sign In
+            </Button>
+          </Link>
+        </Form.Item>
+      </Form>
+    </div>
+  );
+};
 
-    const changeUserNameValue = (e) => {
-        const text = e.target.value;
-        props.updateUserName(text)
-    }
-    const addUserNameAndPassword = () => {
-        props.addLogin();
-    }
-
-    const handleSubmit = async (event) => {
-      
-      event.preventDefault();
-      const  userName  = props.userName
-      await logIn(userName)
-
-      
-
-    // if (isAuth) {
-    //   return <Redirect to='/tasks' />;
-    // }
-      
-    };
-
-    console.log(handleSubmit)
-
-    // if(handleSubmit) {
-    //   return <Redirect from='/' to='/tasks' />;
-    // }
-    
-    const isAuth  = props.isAuth;
-
-    if(isAuth===true&&props.userName==='Admin') {
-      return <Redirect to='/tasks'/>
-    }
-    return (
-      
-        <div >
-        <form  onSubmit={handleSubmit}>
-          <label>Login</label>
-          <input  value={props.userName} onChange={changeUserNameValue}/>
-          <label>Password</label>
-          {/* <input required type='password' name='password'/> */}
-          <button  onClick={addUserNameAndPassword}>Sign In</button>
-        </form>
-      </div>
-    )
-
-  
-}
-
-export default Autoruzation
+export default Autorization;

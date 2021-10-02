@@ -1,9 +1,5 @@
-export const logIn = (userName) => (
-    new Promise((resolve, reject) => {
-      if (userName === 'Admin') {
-        resolve();
-      } else {
-        reject(new Error('Incorrect username or password.'));
-      }
-    })
-  );
+export const logIn = (userName, password) => {
+  if (userName === "Admin" && password === "qwerty") {
+    return "successfully";
+  }
+};

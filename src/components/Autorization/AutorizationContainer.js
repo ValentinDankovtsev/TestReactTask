@@ -1,27 +1,35 @@
-import { updateUserNameActionCreator,addUserActionCreator } from "../../redux/loginReducer";
+import {
+  updateUserNameActionCreator,
+  addUserActionCreator,
+  addUserPasswordActionCreator,
+} from "../../redux/loginReducer";
 import { connect } from "react-redux";
-import Autoruzation from "./Autorization";
-
+import Autorization from "./Autorization";
 
 const mapStateToProps = (state) => {
-    return {
-        userName:state.loginPage.userName,
-        isAuth:state.loginPage.isAuth,
-    }
-}
+  return {
+    userName: state.newUserName,
+    isAuth: state.loginPage.isAuth,
+    password: state.newPassword,
+    currentUser: state.newUser,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-      updateUserName:(text)=>{
-        dispatch(updateUserNameActionCreator(text));
-      },
-  
-      addLogin:()=>{
-        dispatch(addUserActionCreator());
-      }
-    }
-  }
+  return {
+    updateUserName: (text) => {
+      dispatch(updateUserNameActionCreator(text));
+    },
 
-  let UserContainer = connect(mapStateToProps,mapDispatchToProps)(Autoruzation)
+    addLogin: () => {
+      dispatch(addUserActionCreator());
+    },
+    updatePassword: (text) => {
+      dispatch(addUserPasswordActionCreator(text));
+    },
+  };
+};
 
-export default UserContainer
+let LoginContainer = connect(mapStateToProps, mapDispatchToProps)(Autorization);
+
+export default LoginContainer;
