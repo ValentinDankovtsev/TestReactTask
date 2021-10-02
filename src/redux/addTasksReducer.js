@@ -4,7 +4,8 @@ const UPDATE_DESCRIPTION_TYPE = "UPDATE_DESCRIPTION_TYPE";
 const UPDATE_DATE_TYPE = "UPDATE_DATA_TYPE";
 
 const initialState = {
-  tasks: [],
+  tasks: [
+  ],
   newTaskText: "Задача",
   newDescriptionText: "Описание",
   newDate: "Дата",

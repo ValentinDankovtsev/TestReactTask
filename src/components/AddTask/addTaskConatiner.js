@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import AddTask from './AddTask';
-// import Tasks from
 import {updateTaskActionCreator,addTaskActionCreator,updateDescriptionActionCreator,updateDataActionCreator} from '../../redux/addTasksReducer'
 
 const mapStateToProps = (state) => {

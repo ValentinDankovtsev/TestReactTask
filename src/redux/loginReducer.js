@@ -1,4 +1,3 @@
-import { store } from "./store";
 import { logIn } from "../components/services/logIn";
 const ADD_USER_TYPE = "ADD_USER_TYPE";
 const UPDATE_USERNAME_TYPE = "UPDATE_USERNAME_TYPE";
@@ -59,11 +58,9 @@ const loginReducer = (state = initialState, action) => {
       if (result === "successfully") {
         return {
           ...state,
-          userName: state.newUserNamea,
+          userName: state.newUserName,
           isAuth: true,
-          password: state.newUserName,
           newPassword: "",
-          // newPassword: "",
           newUserName: "",
         };
       } else {
@@ -71,7 +68,6 @@ const loginReducer = (state = initialState, action) => {
           ...state,
           isAuth: false,
           userName: "",
-          password: "",
           newPassword: "",
           newUserName: "",
         };

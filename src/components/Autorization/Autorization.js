@@ -1,15 +1,8 @@
 import React from "react";
-import { store } from "../../redux/store";
-import Tasks from "../Tasks/Tasks";
-import { logIn } from "../services/logIn";
-import { Redirect, Link, Route, BrowserRouter } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox } from "antd";
-import { resolveOnChange } from "antd/lib/input/Input";
+import { Redirect, Link } from "react-router-dom";
+import { Form, Input, Button} from "antd";
 
-const Autoruzation = (props) => {
-  const history = useHistory();
-
+const Autorization = (props) => {
   const changeUserNameValue = (e) => {
     const text = e.target.value;
     props.updateUserName(text);
@@ -80,10 +73,9 @@ const Autoruzation = (props) => {
             </Button>
           </Link>
         </Form.Item>
-        {/* <input required type='password' name='password'/> */}
       </Form>
     </div>
   );
 };
 
-export default Autoruzation;
+export default Autorization;

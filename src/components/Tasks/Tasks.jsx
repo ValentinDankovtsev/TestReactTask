@@ -1,14 +1,13 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Task from "../AddTask/Task";
-import s from "./Tasks.module.css";
+import s from "./tasks.module.css";
 import { PageHeader, Button } from "antd";
 import { Redirect } from "react-router";
 
 const Tasks = (props) => {
-  // debugger;
-  const tasksElement = props.state.tasksPage.tasks.map((el) => (
-    <Task task={el.task} description={el.description} date={el.date} />
+  const tasksElement = props.state.tasksPage.tasks.map((el,indx) => (
+    <Task key={indx} task={el.task} description={el.description} date={el.date} />
   ));
 
   console.log(props.isAuth);
