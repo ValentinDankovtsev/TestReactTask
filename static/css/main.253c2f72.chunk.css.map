@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/components/Tasks/tasks.module.css"],"names":[],"mappings":"AAAA,+DACI,wBACF,CAEF,4BACE,eACF","file":"main.253c2f72.chunk.css","sourcesContent":[".sitePageHeader {\r\n    border: 1px solid rgb(235, 237, 240);\r\n  }\r\n\r\n.buttonSingOut {\r\n  margin-top: 10px;\r\n}"]}
