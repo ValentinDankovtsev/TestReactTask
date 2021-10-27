@@ -1,10 +1,13 @@
 import {
   updateUserNameActionCreator,
-  addUserActionCreator,
   addUserPasswordActionCreator,
+  login,
+  updatePassword,
+  updateUserName
 } from "../../redux/loginReducer";
 import { connect } from "react-redux";
 import Autorization from "./Autorization";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -21,15 +24,22 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(updateUserNameActionCreator(text));
     },
 
-    addLogin: () => {
-      dispatch(addUserActionCreator());
-    },
+    // login: () =>   (dispatch) => {
+    //   // const result = await logIn(userName, password);
+
+    //   // if (result) {
+    //   //   dispatch(addUserActionCreator());
+    //   // } else {
+    //   //   return alert("ошибка");
+    //   // }
+    //   setTimeout(()=>console.log('dsfsd'),2000)
+    // },
     updatePassword: (text) => {
       dispatch(addUserPasswordActionCreator(text));
     },
   };
 };
 
-let LoginContainer = connect(mapStateToProps, mapDispatchToProps)(Autorization);
+let LoginContainer = connect(mapStateToProps, {updateUserName,updatePassword,login})(Autorization);
 
 export default LoginContainer;

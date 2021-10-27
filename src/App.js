@@ -7,7 +7,7 @@ import {store} from './redux/store';
 function App() {
   return (
     <BrowserRouter>
-    <Route exact path="/" render={()=> <LoginContainer />} />
+    <Route exact path="/" render={()=> <LoginContainer state={store.getState()} />} />
     <Route path="/tasks" render={() => <TasksContainer state={store.getState()}/>} />
     <Route path="/addtask" render={() => <AddTaskContainer />} />
     </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 
 const Autorization = (props) => {
@@ -13,15 +13,14 @@ const Autorization = (props) => {
     props.updatePassword(text);
   };
   const addUserNameAndPassword = () => {
-    props.addLogin();
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    props.login(
+      props.state.loginPage.newUserName,
+      props.state.loginPage.newPassword
+    );
   };
 
   if (props.isAuth) return <Redirect to={"/tasks"} />;
-  console.log(props.isAuth);
+
   return (
     <div>
       <Form
@@ -36,7 +35,6 @@ const Autorization = (props) => {
           remember: true,
         }}
         autoComplete="off"
-        onSubmit={handleSubmit}
       >
         <Form.Item
           label="Username"
@@ -68,11 +66,10 @@ const Autorization = (props) => {
             span: 16,
           }}
         >
-          <Link to={"/tasks"}>
-            <Button type="primary" onClick={addUserNameAndPassword}>
-              Sign In
-            </Button>
-          </Link>
+          <Button type="primary" onClick={addUserNameAndPassword}>
+            Sign In
+          </Button>
+          {/* </Link> */}
         </Form.Item>
       </Form>
     </div>

@@ -37,6 +37,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         newUserName: action.value,
+        userName: action.value,
       };
     case UPDATE_USERPASSWORD_TYPE:
       return {
@@ -54,24 +55,13 @@ const loginReducer = (state = initialState, action) => {
       };
 
     case ADD_USER_TYPE:
-      const result = logIn(state.newUserName, state.newPassword);
-      if (result === "successfully") {
-        return {
-          ...state,
-          userName: state.newUserName,
-          isAuth: true,
-          newPassword: "",
-          newUserName: "",
-        };
-      } else {
-        return {
-          ...state,
-          isAuth: false,
-          userName: "",
-          newPassword: "",
-          newUserName: "",
-        };
-      }
+      return {
+        ...state,
+        userName: state.newUserName,
+        isAuth: true,
+        newPassword: "",
+        newUserName: "",
+      };
 
     default:
       return state;
@@ -79,3 +69,20 @@ const loginReducer = (state = initialState, action) => {
 };
 
 export default loginReducer;
+
+export const login = (name, password) => (dispatch) => {
+  const result = logIn(name, password);
+  if (result === "succes") {
+    dispatch(addUserActionCreator());
+  } else {
+    alert('попробуйте еще раз')
+  }
+};
+
+export const updateUserName = (text) => (dispatch) => {
+  dispatch(updateUserNameActionCreator(text));
+};
+
+export const updatePassword = (text) => (dispatch) => {
+  dispatch(addUserPasswordActionCreator(text));
+};
