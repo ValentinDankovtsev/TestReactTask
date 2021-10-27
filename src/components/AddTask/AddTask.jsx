@@ -5,9 +5,9 @@ import s from "./addTask.module.css";
 
 const AddTask = (props) => {
   const inTask = () => {
-    props.addTask();
+    props.addTask(props.newUser);
   };
-
+  console.log(props.newUser);
   const changeTask = (e) => {
     const text = e.target.value;
     props.updateNewTask(text);

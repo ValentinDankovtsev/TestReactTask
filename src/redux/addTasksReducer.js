@@ -1,13 +1,12 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 const ADD_TASK_TYPE = "ADD_TASK_TYPE";
 const UPDATE_TASK_TYPE = "UPDATE_TASK_TYPE";
 const UPDATE_DESCRIPTION_TYPE = "UPDATE_DESCRIPTION_TYPE";
 const UPDATE_DATE_TYPE = "UPDATE_DATA_TYPE";
 
-
-
 const initialState = {
-  tasks: [],
+  Admin: [{ id: 1, task: "Задача Админа" }],
+  User: [{ id: 2, task: "Задача Юзера" }],
   newTaskText: "Задача",
   newDescriptionText: "Описание",
   newDate: "Дата",
@@ -20,9 +19,10 @@ export const updateTaskActionCreator = (text) => {
   };
 };
 
-export const addTaskActionCreator = () => {
+export const addTaskActionCreator = (userName) => {
   return {
     type: ADD_TASK_TYPE,
+    payload: userName,
   };
 };
 
@@ -43,21 +43,18 @@ export const updateDataActionCreator = (text) => {
 const addTaskReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK_TYPE:
-      return {
-        ...state,
-        tasks: [
-          ...state.tasks,
-          {
-            id: uuidv4 (),
+      let copy = Object.assign({}, state);
+      for (let key in copy) {
+        if (key === action.payload) {
+          copy[key].push({
+            id: uuidv4(),
             task: state.newTaskText,
             description: state.newDescriptionText,
             date: state.newDate,
-          },
-        ],
-        newTaskText: "",
-        newDescriptionText: "",
-        newDate: "",
-      };
+          });
+        }
+      }
+      return copy;
 
     case UPDATE_TASK_TYPE:
       return {

@@ -29,8 +29,8 @@ const mapDispatchToProps = (dispatch) => {
     updateData: (text) => {
       dispatch(updateDataActionCreator(text));
     },
-    addTask: () => {
-      dispatch(addTaskActionCreator());
+    addTask: (userName) => {
+      dispatch(addTaskActionCreator(userName));
     },
   };
 };

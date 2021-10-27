@@ -6,7 +6,8 @@ import { PageHeader, Button } from "antd";
 import { Redirect } from "react-router";
 
 const Tasks = (props) => {
-  const tasksElement = props.state.tasksPage.tasks.map((el, indx) => (
+  const user = props.currentUser;
+  const tasksElement = props.state.tasksPage[user].map((el, indx) => (
     <Task
       key={indx}
       task={el.task}
